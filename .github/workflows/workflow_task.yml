@@ -1,0 +1,24 @@
+name: The 2jobs workflow
+
+on:
+  push:
+    branches:
+      - main
+      - master
+
+jobs:
+  say-hello:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v7
+
+      - name: Echo Hello World
+        run: echo "Hello World!"
+
+  say-goodbye:
+    needs: say-hello
+    runs-on: ubuntu-latest
+    steps:
+      - name: Echo Goodbye
+        run: echo "Job 1 was successful, now running job 2!"
